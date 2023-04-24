@@ -8,6 +8,7 @@ import com.pismo.accountmanager.exceptions.NotFoundException;
 import com.pismo.accountmanager.exceptions.UnprocessableEntityException;
 import com.pismo.accountmanager.service.AccountsService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class AccountsController {
 
     @PostMapping
     @JsonView(JsonViews.Select.class)
-    public ResponseEntity<AccountsDto> createAccount(@JsonView(JsonViews.Create.class) @NotNull @RequestBody AccountsDto accountsDto, HttpServletRequest request) {
+    public ResponseEntity<AccountsDto> createAccount(@JsonView(JsonViews.Create.class) @Valid @RequestBody AccountsDto accountsDto, HttpServletRequest request) {
 
         log.debug("Creating account - accountsDto {}", accountsDto);
 

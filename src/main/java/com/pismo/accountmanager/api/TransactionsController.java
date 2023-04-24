@@ -13,6 +13,7 @@ import com.pismo.accountmanager.service.AccountsService;
 import com.pismo.accountmanager.service.OperationsTypesService;
 import com.pismo.accountmanager.service.TransactionsService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,7 @@ public class TransactionsController {
 
     @PostMapping
     @JsonView(JsonViews.Select.class)
-    public ResponseEntity<TransactionsDto> createTransaction(@JsonView(JsonViews.Create.class) @NotNull @RequestBody TransactionsDto transactionsDto, HttpServletRequest request) {
+    public ResponseEntity<TransactionsDto> createTransaction(@JsonView(JsonViews.Create.class) @Valid @RequestBody TransactionsDto transactionsDto, HttpServletRequest request) {
 
         log.debug("Creating transaction - transactionsDto {}", transactionsDto);
 
